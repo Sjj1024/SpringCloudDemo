@@ -1,0 +1,15 @@
+server:
+  port: 8761
+
+eureka:
+  client:
+    # 默认eureka服务注册中心会将自身作为客户端来尝试注册，所以我们需要禁用它的客户端注册行为
+    register-with-eureka: false
+    # 默认30秒会更新客户端注册上来的服务清单，启动时就不获取了，不然启动会有报错，虽然不影响
+    fetch-registry: false
+  server:
+    # 关闭注册中心自我保护（默认是true，生产环境不建议关闭，去掉该配置项或改成true）
+    enable-self-preservation: false
+spring:
+  application:
+    name: eureka_server1
