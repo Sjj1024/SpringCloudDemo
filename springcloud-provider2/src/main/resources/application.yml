@@ -1,13 +1,13 @@
 server:
-  port: 8080
+  port: 8081
 
 
 eureka:
   client:
     service-url:
       # 注册中心地址，如果注册中心是高可用，那么这里后面可以添加多个地址，逗号分开
-#      defaultZone: http://localhost:8761/eureka/
-      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+      defaultZone: http://localhost:8761/eureka/
+#      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
 
 
 spring:

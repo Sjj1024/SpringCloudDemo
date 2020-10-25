@@ -11,9 +11,8 @@
         <module>springcloud-api</module>
         <module>springcloud-provider-8001</module>
         <module>springcloud-consumer-80</module>
-        <module>springcloud-eureka-server1</module>
-        <module>springcloud-eureka-server1</module>
         <module>springcloud-eureka-server2</module>
+        <module>springcloud-provider2</module>
     </modules>
 
     <!--    说明这是一个父工程，管理很多子包-->

@@ -14,7 +14,10 @@ public class UserController {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String REST_FUL_URL = "http://localhost:8001";
+    // private static final String REST_FUL_URL = "http://localhost:8001";
+
+    //  使用ribbon实现负载均衡的时候，从服务器上选择的时候，应该使用服务的名称来获取
+    private static final String REST_FUL_URL = "http://PROVIDER";
 
     @RequestMapping("/hello")
     public String hello() {
