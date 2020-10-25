@@ -2,13 +2,13 @@ package com.shen;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 
 @SpringBootApplication
-@EnableDiscoveryClient
-public class EurekaProvider1 {
+@EnableEurekaServer
+public class EurekaServer2 {
     public static void main(String[] args) {
-        SpringApplication.run(EurekaProvider1.class, args);
+        SpringApplication.run(EurekaServer2.class, args);
     }
 }

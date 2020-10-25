@@ -7,6 +7,9 @@ eureka:
     register-with-eureka: false
     # 默认30秒会更新客户端注册上来的服务清单，启动时就不获取了，不然启动会有报错，虽然不影响
     fetch-registry: false
+    service-url:
+      # 提供其他注册中心的地址，注册中心将自身以客户端注册的方式注册到其他注册中心去
+      defaultZone: http://localhost:8762/eureka/
   server:
     # 关闭注册中心自我保护（默认是true，生产环境不建议关闭，去掉该配置项或改成true）
     enable-self-preservation: true
