@@ -20,3 +20,5 @@ Python结合Jmeter实现接口和UI自动化实例讲解：https://www.jianshu.c
 [JavaEE] SpringCloud集成Hystrix服务保护：https://www.jianshu.com/p/cce702d44b7d
 
 阿里巴巴为什么能抗住90秒100亿？看完这篇你就明白了！：https://www.jianshu.com/p/f4a907fe1485
+
+还不懂Spring Boot启动原理的话，一定要看看！：https://www.jianshu.com/p/5da873d1c37c
