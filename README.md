@@ -26,3 +26,5 @@ Python结合Jmeter实现接口和UI自动化实例讲解：https://www.jianshu.c
 “12306”是如何支撑百万QPS的？；https://www.jianshu.com/p/9e015057d81c
 
 Spring boot性能优化:https://www.jianshu.com/p/e0bbbaea3995
+
+Spring+ Spring cloud + SSO单点登录应用认证：https://zhuanlan.zhihu.com/p/50882282
