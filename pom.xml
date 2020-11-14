@@ -13,6 +13,8 @@
         <module>springcloud-consumer-80</module>
         <module>springcloud-eureka-server2</module>
         <module>springcloud-provider2</module>
+        <module>springcloud-oauth-uaa-8003</module>
+        <module>springcloud-oauth-order-8004</module>
     </modules>
 
     <!--    说明这是一个父工程，管理很多子包-->
@@ -40,6 +42,20 @@
                 <version>2.1.4.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-jwt</artifactId>
+                <version>1.0.10.RELEASE</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.security.oauth.boot/spring-security-oauth2-autoconfigure -->
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>2.3.3.RELEASE</version>
             </dependency>
 
         </dependencies>
