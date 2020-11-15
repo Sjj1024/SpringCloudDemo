@@ -30,6 +30,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("admin").password(new BCryptPasswordEncoder()
                 .encode("123456")).roles("r1");
+        auth.inMemoryAuthentication()
+                .passwordEncoder(new BCryptPasswordEncoder())
+                .withUser("songjiang").password(new BCryptPasswordEncoder()
+                .encode("123456")).roles("r2");
     }
 
     @Override

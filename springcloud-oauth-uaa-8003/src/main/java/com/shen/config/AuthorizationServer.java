@@ -17,10 +17,12 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
-import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
-import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
-import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.*;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableAuthorizationServer
@@ -37,10 +39,11 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         return new InMemoryAuthorizationCodeServices();
     }
 
-    @Bean
-    public TokenStore tokenStore(){
-        return new InMemoryTokenStore();
-    }
+    // 不再使用内存中的验证
+    // @Bean
+    // public TokenStore tokenStore(){
+    //     return new InMemoryTokenStore();
+    // }
 
     @Autowired
     private TokenStore tokenStore;
@@ -51,6 +54,9 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private JwtAccessTokenConverter accessTokenConverter;
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
@@ -58,7 +64,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
                 .secret(new BCryptPasswordEncoder().encode("secret"))
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token", "authorization_code")
                 .scopes("all")
-                .resourceIds("all")
+                .resourceIds("resource1")
                 .autoApprove(false)
                 .redirectUris("http://www.baidu.com")
                 .accessTokenValiditySeconds(1200)
@@ -68,12 +74,19 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private ClientDetailsService clientDetailsService;
 
+    // 令牌管理服务
     @Bean
     public AuthorizationServerTokenServices tokenServices(){
         DefaultTokenServices services = new DefaultTokenServices();
         services.setClientDetailsService(clientDetailsService);
         services.setSupportRefreshToken(true);
         services.setTokenStore(tokenStore);
+
+        // 设置令牌增强服务
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.<TokenEnhancer>asList(accessTokenConverter));
+        services.setTokenEnhancer(tokenEnhancerChain);
+
         services.setAccessTokenValiditySeconds(7200);
         services.setRefreshTokenValiditySeconds(36000);
         return services;
